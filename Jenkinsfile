@@ -26,13 +26,19 @@ pipeline {
                 '''
             }
         }
-
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-
+stage('Test') {
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-21-amazon-corretto.x86_64'
+        PATH = "/usr/lib/jvm/java-21-amazon-corretto.x86_64/bin:${env.PATH}"
+    }
+    steps {
+        sh '''
+            java -version
+            mvn -version
+            mvn test
+        '''
+    }
+}
         stage('Docker Build') {
             steps {
                 sh 'docker build -t novapay-app:v1 .'
