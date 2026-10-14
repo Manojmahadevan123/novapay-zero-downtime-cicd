@@ -28,10 +28,10 @@ pipeline {
         }
 
         stage('Test') {
-            steps {
-                echo 'Build and test stage completed'
-            }
-        }
+    steps {
+        sh 'mvn test'
+    }
+}
 
         stage('Docker Build') {
             steps {
