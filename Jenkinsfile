@@ -35,7 +35,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'sudo docker build -t novapay-app:v1 .'
+                sh 'docker build -t novapay-app:v1 .'
             }
         }
     }
